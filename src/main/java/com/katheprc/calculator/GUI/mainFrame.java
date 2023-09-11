@@ -502,7 +502,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     }//GEN-LAST:event_divButtonActionPerformed
 
     private void n0ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n0ButtonActionPerformed
-        disableAllOperators();
+
         if (isZero()) {
             visor.setText("0");
         } else {
