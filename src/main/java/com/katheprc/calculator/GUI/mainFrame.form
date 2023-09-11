@@ -439,6 +439,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="="/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="equalButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="puntoButton">
               <Properties>
@@ -495,6 +498,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="&#xb2;&#x221a;x"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rootButtonActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="x2Button">
               <Properties>

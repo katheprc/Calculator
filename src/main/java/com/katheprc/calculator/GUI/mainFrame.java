@@ -201,6 +201,11 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         equalButton.setBackground(new java.awt.Color(153, 153, 153));
         equalButton.setForeground(new java.awt.Color(0, 0, 0));
         equalButton.setText("=");
+        equalButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                equalButtonActionPerformed(evt);
+            }
+        });
 
         puntoButton.setBackground(new java.awt.Color(86, 86, 86));
         puntoButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -233,6 +238,11 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         rootButton.setBackground(new java.awt.Color(86, 86, 86));
         rootButton.setForeground(new java.awt.Color(255, 255, 255));
         rootButton.setText("²√x");
+        rootButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rootButtonActionPerformed(evt);
+            }
+        });
 
         x2Button.setBackground(new java.awt.Color(86, 86, 86));
         x2Button.setForeground(new java.awt.Color(255, 255, 255));
@@ -430,6 +440,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
 
     private void moduleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_moduleButtonActionPerformed
 
+        disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("%"));
         } else {
@@ -450,6 +461,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     }
 
     private void plusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_plusButtonActionPerformed
+        disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("+"));
         } else {
@@ -459,6 +471,8 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     }//GEN-LAST:event_plusButtonActionPerformed
 
     private void minusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusButtonActionPerformed
+       
+        disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("-"));
         } else {
@@ -468,24 +482,27 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     }//GEN-LAST:event_minusButtonActionPerformed
 
     private void multButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multButtonActionPerformed
+        disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("x"));
-        }  else {
+        } else {
             removeLast();
             visor.setText(visor.getText().concat("x"));
         }
     }//GEN-LAST:event_multButtonActionPerformed
 
     private void divButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_divButtonActionPerformed
+        disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("/"));
-        }  else {
+        } else {
             removeLast();
             visor.setText(visor.getText().concat("/"));
         }
     }//GEN-LAST:event_divButtonActionPerformed
 
     private void n0ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_n0ButtonActionPerformed
+        disableAllOperators();
         if (isZero()) {
             visor.setText("0");
         } else {
@@ -494,13 +511,17 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     }//GEN-LAST:event_n0ButtonActionPerformed
 
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
-        removeLast();
+        if(!ultimaLetra()){
+            enableAllOperators();
+            removeLast();
+        }
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void puntoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntoButtonActionPerformed
+        
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("."));
-        }  else {
+        } else {
             removeLast();
             visor.setText(visor.getText().concat("."));
         }
@@ -580,25 +601,94 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
 
     private void cButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cButtonActionPerformed
         visor.setText("0");
+        history.setText("");
+        enableAllOperators();
     }//GEN-LAST:event_cButtonActionPerformed
 
     private void x2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_x2ButtonActionPerformed
+        disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("²"));
-        }  else {
+        } else {
             removeLast();
             visor.setText(visor.getText().concat("²"));
         }
     }//GEN-LAST:event_x2ButtonActionPerformed
 
     private void x3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_x3ButtonActionPerformed
+        disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("³"));
-        }  else {
+        } else {
             removeLast();
             visor.setText(visor.getText().concat("³"));
         }
     }//GEN-LAST:event_x3ButtonActionPerformed
+
+    private void equalButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_equalButtonActionPerformed
+        if (ultimaLetra()) {
+            history.setText(visor.getText().concat("="));
+            visor.setText(operacion());
+            enableAllOperators();
+        }
+    }//GEN-LAST:event_equalButtonActionPerformed
+
+    private void rootButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rootButtonActionPerformed
+       disableAllOperators();
+        visor.setText("√");
+    }//GEN-LAST:event_rootButtonActionPerformed
+
+    private String operacion() {
+
+        String operacion = visor.getText();
+        String termino = "", termino2 = "", operador = "";
+
+        for (int aux = 0; aux < operacion.length(); aux++) {
+            if(operacion.substring(0, 1). equals("√")){
+                operador = "sqroot";
+                termino = operacion.substring(1, operacion.length());
+                break;
+            } else  if (operacion.substring(aux, aux + 1).equals("+") ||  operacion.substring(aux, aux + 1).equals("-") || operacion.substring(aux, aux + 1).equals("/") || operacion.substring(aux, aux + 1).equals("x") || operacion.substring(aux, aux + 1).equals("³") || operacion.substring(aux, aux + 1).equals("²")) {
+
+                    termino = operacion.substring(0, aux);
+                    operador = operacion.substring(aux, aux + 1);
+                    termino2 = operacion.substring(aux + 1, operacion.length());
+                    break;
+               
+            }
+        }
+        
+        double result;
+        
+        switch(operador){
+            case "-":
+                result = Double.parseDouble(termino) - Double.parseDouble(termino2);
+                return Double.toString(result);
+            case "+":
+                result = Double.parseDouble(termino) + Double.parseDouble(termino2);
+                return Double.toString(result);
+            case "x":
+                result = Double.parseDouble(termino) * Double.parseDouble(termino2);
+                return Double.toString(result);
+            case "/":
+                result = Double.parseDouble(termino) / Double.parseDouble(termino2);
+                return Double.toString(result);
+            case "³":
+                result = Double.parseDouble(termino) * Double.parseDouble(termino) * Double.parseDouble(termino);
+                return Double.toString(result);
+            case "²":
+                result = Double.parseDouble(termino) * Double.parseDouble(termino);
+                return Double.toString(result);
+            case "%":
+                result = (Double.parseDouble(termino) * Double.parseDouble(termino))/100;
+                return Double.toString(result);
+            case "sqroot":
+                result = Math.sqrt(Double.parseDouble(termino));
+                return Double.toString(result);
+        }
+
+        return "";
+    }
 
     private void removeLast() {
         String result = null;
@@ -625,6 +715,16 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         rootButton.setEnabled(false);
         x2Button.setEnabled(false);
         x3Button.setEnabled(false);
+    }
+        private void enableAllOperators() {
+        divButton.setEnabled(true);
+        minusButton.setEnabled(true);
+        moduleButton.setEnabled(true);
+        multButton.setEnabled(true);
+        plusButton.setEnabled(true);
+        rootButton.setEnabled(true);
+        x2Button.setEnabled(true);
+        x3Button.setEnabled(true);
     }
 
 
