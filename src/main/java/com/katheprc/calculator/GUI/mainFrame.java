@@ -5,6 +5,7 @@
 package com.katheprc.calculator.GUI;
 
 import com.katheprc.calculator.logic.CalculatorLogic;
+import java.awt.Color;
 
 /**
  *
@@ -51,6 +52,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         jPanel2 = new javax.swing.JPanel();
         visor = new javax.swing.JTextField();
         history = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -372,24 +374,37 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         history.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
         history.setFocusable(false);
 
+        jComboBox1.setBackground(new java.awt.Color(51, 51, 51));
+        jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Default color", "Blue", "Green", "Red", "White" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(history, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
-                    .addComponent(visor, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(history, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                    .addComponent(visor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 283, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(history, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(history, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(visor, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(visor, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -408,7 +423,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 566, Short.MAX_VALUE)
+            .addGap(0, 572, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -638,6 +653,76 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         visor.setText("√");
     }//GEN-LAST:event_rootButtonActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if(jComboBox1.getSelectedItem().equals("Default color")){ 
+            divButton.setBackground(new java.awt.Color(255, 102, 0));
+            divButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+            multButton.setBackground(new java.awt.Color(255, 102, 0));
+            multButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+            plusButton.setBackground(new java.awt.Color(255, 102, 0));
+            plusButton.setForeground(new java.awt.Color(255, 255, 255));
+
+            minusButton.setBackground(new java.awt.Color(255, 102, 0));
+            minusButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+        } else if(jComboBox1.getSelectedItem().equals("Blue")){ //[0,102,255]
+                        divButton.setBackground(new java.awt.Color(0,102,255));
+            divButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+            multButton.setBackground(new java.awt.Color(0,102,255));
+            multButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+            plusButton.setBackground(new java.awt.Color(0,102,255));
+            plusButton.setForeground(new java.awt.Color(255, 255, 255));
+
+            minusButton.setBackground(new java.awt.Color(0,102,255));
+            minusButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+        } else if(jComboBox1.getSelectedItem().equals("Green")){ //[0,255,102]
+            divButton.setBackground(new java.awt.Color(0,255,102));
+            divButton.setForeground(new java.awt.Color(0, 0, 0));
+            
+            multButton.setBackground(new java.awt.Color(0,255,102));
+            multButton.setForeground(new java.awt.Color(0, 0, 0));
+            
+            plusButton.setBackground(new java.awt.Color(0,255,102));
+            plusButton.setForeground(new java.awt.Color(0, 0, 0));
+
+            minusButton.setBackground(new java.awt.Color(0,255,102));
+            minusButton.setForeground(new java.awt.Color(0, 0, 0));
+            
+        } else if(jComboBox1.getSelectedItem().equals("Red")) {//[255,51,51]
+                        divButton.setBackground(new java.awt.Color(255,51,51));
+            divButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+            multButton.setBackground(new java.awt.Color(255,51,51));
+            multButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+            plusButton.setBackground(new java.awt.Color(255,51,51));
+            plusButton.setForeground(new java.awt.Color(255, 255, 255));
+
+            minusButton.setBackground(new java.awt.Color(255,51,51));
+            minusButton.setForeground(new java.awt.Color(255, 255, 255));
+            
+        } else if(jComboBox1.getSelectedItem().equals("White")) {
+            divButton.setBackground(new java.awt.Color(255, 255, 255));
+            divButton.setForeground(new java.awt.Color(0, 0, 0));
+            
+            multButton.setBackground(new java.awt.Color(255, 255, 255));
+            multButton.setForeground(new java.awt.Color(0, 0, 0));
+            
+            plusButton.setBackground(new java.awt.Color(255, 255, 255));
+            plusButton.setForeground(new java.awt.Color(0, 0, 0));
+
+            minusButton.setBackground(new java.awt.Color(255, 255, 255));
+            minusButton.setForeground(new java.awt.Color(0, 0, 0));
+        }
+        
+
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
     private String operacion() {
 
         String operacion = visor.getText();
@@ -648,7 +733,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
                 operador = "sqroot";
                 termino = operacion.substring(1, operacion.length());
                 break;
-            } else  if (operacion.substring(aux, aux + 1).equals("+") ||  operacion.substring(aux, aux + 1).equals("-") || operacion.substring(aux, aux + 1).equals("/") || operacion.substring(aux, aux + 1).equals("x") || operacion.substring(aux, aux + 1).equals("³") || operacion.substring(aux, aux + 1).equals("²")) {
+            } else  if (operacion.substring(aux, aux + 1).equals("%") || operacion.substring(aux, aux + 1).equals("+") ||  operacion.substring(aux, aux + 1).equals("-") || operacion.substring(aux, aux + 1).equals("/") || operacion.substring(aux, aux + 1).equals("x") || operacion.substring(aux, aux + 1).equals("³") || operacion.substring(aux, aux + 1).equals("²")) {
 
                     termino = operacion.substring(0, aux);
                     operador = operacion.substring(aux, aux + 1);
@@ -680,7 +765,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
                 result = Double.parseDouble(termino) * Double.parseDouble(termino);
                 return Double.toString(result);
             case "%":
-                result = (Double.parseDouble(termino) * Double.parseDouble(termino))/100;
+                result = ((Double.parseDouble(termino) * Double.parseDouble(termino2))/100);
                 return Double.toString(result);
             case "sqroot":
                 result = Math.sqrt(Double.parseDouble(termino));
@@ -734,6 +819,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     private javax.swing.JButton divButton;
     private javax.swing.JButton equalButton;
     private javax.swing.JTextField history;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
