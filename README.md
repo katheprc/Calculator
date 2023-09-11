@@ -1,2 +1,4 @@
-# Calculator
- Simple calculator made with java swing
+# Screenshots:
+
+![Screenshot](calculadora.PNG)
+
