@@ -9,11 +9,12 @@
 -----------------------------------------------------------------
 
 ## Screenshots:
-![Screenshot](screenshots/potencia3.PNG) <br>
+![Screenshot](screenshots/calculadora.PNG) <br>
+![Screenshot](screenshots/potencia2.PNG) <br>
 ![Screenshot](screenshots/sqroot.PNG) <br>
 ![Screenshot](screenshots/mult.PNG) <br>
 ![Screenshot](screenshots/minus.PNG) <br>
-![Screenshot](screenshots/sum.PNG) <br>
+
 
 
 
