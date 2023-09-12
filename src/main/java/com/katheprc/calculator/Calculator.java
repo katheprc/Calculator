@@ -4,13 +4,12 @@
 package com.katheprc.calculator;
 
 import com.katheprc.calculator.GUI.mainFrame;
-import com.katheprc.calculator.logic.CalculatorLogic;
 
 /**
  *
  * @author KathePrc
  */
-public class Calculator implements CalculatorLogic {
+public class Calculator {
 
     public static void main(String[] args) {
         mainFrame mf = new mainFrame();

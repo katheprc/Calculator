@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.katheprc.calculator.GUI;
-
-import com.katheprc.calculator.logic.CalculatorLogic;
-import java.awt.Color;
 
 /**
  *
  * @author KathePrc
  */
-public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
+public class mainFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form mainFrame
@@ -486,7 +479,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     }//GEN-LAST:event_plusButtonActionPerformed
 
     private void minusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minusButtonActionPerformed
-       
+
         disableAllOperators();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("-"));
@@ -526,14 +519,19 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
     }//GEN-LAST:event_n0ButtonActionPerformed
 
     private void delButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delButtonActionPerformed
-        if(!ultimaLetra()){
+        if (!ultimaLetra() || visor.getText().substring((visor.getText().length() - 1), visor.getText().length()).equalsIgnoreCase("²")
+                || visor.getText().substring((visor.getText().length() - 1), visor.getText().length()).equalsIgnoreCase("³")) {
             enableAllOperators();
+            enableAllNumbers();
+            removeLast();
+        } else {
+            enableAllNumbers();
             removeLast();
         }
     }//GEN-LAST:event_delButtonActionPerformed
 
     private void puntoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_puntoButtonActionPerformed
-        
+
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("."));
         } else {
@@ -622,6 +620,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
 
     private void x2ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_x2ButtonActionPerformed
         disableAllOperators();
+        disableAllNumbers();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("²"));
         } else {
@@ -632,6 +631,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
 
     private void x3ButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_x3ButtonActionPerformed
         disableAllOperators();
+        disableAllNumbers();
         if (ultimaLetra()) {
             visor.setText(visor.getText().concat("³"));
         } else {
@@ -645,81 +645,82 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
             history.setText(visor.getText().concat("="));
             visor.setText(operacion());
             enableAllOperators();
+            enableAllNumbers();
         }
     }//GEN-LAST:event_equalButtonActionPerformed
 
     private void rootButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rootButtonActionPerformed
-       disableAllOperators();
+        disableAllOperators();
         visor.setText("√");
     }//GEN-LAST:event_rootButtonActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        if(jComboBox1.getSelectedItem().equals("Default color")){ 
+        if (jComboBox1.getSelectedItem().equals("Default color")) {
             divButton.setBackground(new java.awt.Color(255, 102, 0));
             divButton.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             multButton.setBackground(new java.awt.Color(255, 102, 0));
             multButton.setForeground(new java.awt.Color(255, 255, 255));
-            
+
             plusButton.setBackground(new java.awt.Color(255, 102, 0));
             plusButton.setForeground(new java.awt.Color(255, 255, 255));
 
             minusButton.setBackground(new java.awt.Color(255, 102, 0));
             minusButton.setForeground(new java.awt.Color(255, 255, 255));
-            
-        } else if(jComboBox1.getSelectedItem().equals("Blue")){ //[0,102,255]
-                        divButton.setBackground(new java.awt.Color(0,102,255));
+
+        } else if (jComboBox1.getSelectedItem().equals("Blue")) { //[0,102,255]
+            divButton.setBackground(new java.awt.Color(0, 102, 255));
             divButton.setForeground(new java.awt.Color(255, 255, 255));
-            
-            multButton.setBackground(new java.awt.Color(0,102,255));
+
+            multButton.setBackground(new java.awt.Color(0, 102, 255));
             multButton.setForeground(new java.awt.Color(255, 255, 255));
-            
-            plusButton.setBackground(new java.awt.Color(0,102,255));
+
+            plusButton.setBackground(new java.awt.Color(0, 102, 255));
             plusButton.setForeground(new java.awt.Color(255, 255, 255));
 
-            minusButton.setBackground(new java.awt.Color(0,102,255));
+            minusButton.setBackground(new java.awt.Color(0, 102, 255));
             minusButton.setForeground(new java.awt.Color(255, 255, 255));
-            
-        } else if(jComboBox1.getSelectedItem().equals("Green")){ //[0,255,102]
-            divButton.setBackground(new java.awt.Color(0,255,102));
+
+        } else if (jComboBox1.getSelectedItem().equals("Green")) { //[0,255,102]
+            divButton.setBackground(new java.awt.Color(0, 255, 102));
             divButton.setForeground(new java.awt.Color(0, 0, 0));
-            
-            multButton.setBackground(new java.awt.Color(0,255,102));
+
+            multButton.setBackground(new java.awt.Color(0, 255, 102));
             multButton.setForeground(new java.awt.Color(0, 0, 0));
-            
-            plusButton.setBackground(new java.awt.Color(0,255,102));
+
+            plusButton.setBackground(new java.awt.Color(0, 255, 102));
             plusButton.setForeground(new java.awt.Color(0, 0, 0));
 
-            minusButton.setBackground(new java.awt.Color(0,255,102));
+            minusButton.setBackground(new java.awt.Color(0, 255, 102));
             minusButton.setForeground(new java.awt.Color(0, 0, 0));
-            
-        } else if(jComboBox1.getSelectedItem().equals("Red")) {//[255,51,51]
-                        divButton.setBackground(new java.awt.Color(255,51,51));
+
+        } else if (jComboBox1.getSelectedItem().equals("Red")) {//[255,51,51]
+            divButton.setBackground(new java.awt.Color(255, 51, 51));
             divButton.setForeground(new java.awt.Color(255, 255, 255));
-            
-            multButton.setBackground(new java.awt.Color(255,51,51));
+
+            multButton.setBackground(new java.awt.Color(255, 51, 51));
             multButton.setForeground(new java.awt.Color(255, 255, 255));
-            
-            plusButton.setBackground(new java.awt.Color(255,51,51));
+
+            plusButton.setBackground(new java.awt.Color(255, 51, 51));
             plusButton.setForeground(new java.awt.Color(255, 255, 255));
 
-            minusButton.setBackground(new java.awt.Color(255,51,51));
+            minusButton.setBackground(new java.awt.Color(255, 51, 51));
             minusButton.setForeground(new java.awt.Color(255, 255, 255));
-            
-        } else if(jComboBox1.getSelectedItem().equals("White")) {
+
+        } else if (jComboBox1.getSelectedItem().equals("White")) {
             divButton.setBackground(new java.awt.Color(255, 255, 255));
             divButton.setForeground(new java.awt.Color(0, 0, 0));
-            
+
             multButton.setBackground(new java.awt.Color(255, 255, 255));
             multButton.setForeground(new java.awt.Color(0, 0, 0));
-            
+
             plusButton.setBackground(new java.awt.Color(255, 255, 255));
             plusButton.setForeground(new java.awt.Color(0, 0, 0));
 
             minusButton.setBackground(new java.awt.Color(255, 255, 255));
             minusButton.setForeground(new java.awt.Color(0, 0, 0));
         }
-        
+
 
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
@@ -729,23 +730,23 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         String termino = "", termino2 = "", operador = "";
 
         for (int aux = 0; aux < operacion.length(); aux++) {
-            if(operacion.substring(0, 1). equals("√")){
+            if (operacion.substring(0, 1).equals("√")) {
                 operador = "sqroot";
                 termino = operacion.substring(1, operacion.length());
                 break;
-            } else  if (operacion.substring(aux, aux + 1).equals("%") || operacion.substring(aux, aux + 1).equals("+") ||  operacion.substring(aux, aux + 1).equals("-") || operacion.substring(aux, aux + 1).equals("/") || operacion.substring(aux, aux + 1).equals("x") || operacion.substring(aux, aux + 1).equals("³") || operacion.substring(aux, aux + 1).equals("²")) {
+            } else if (operacion.substring(aux, aux + 1).equals("%") || operacion.substring(aux, aux + 1).equals("+") || operacion.substring(aux, aux + 1).equals("-") || operacion.substring(aux, aux + 1).equals("/") || operacion.substring(aux, aux + 1).equals("x") || operacion.substring(aux, aux + 1).equals("³") || operacion.substring(aux, aux + 1).equals("²")) {
 
-                    termino = operacion.substring(0, aux);
-                    operador = operacion.substring(aux, aux + 1);
-                    termino2 = operacion.substring(aux + 1, operacion.length());
-                    break;
-               
+                termino = operacion.substring(0, aux);
+                operador = operacion.substring(aux, aux + 1);
+                termino2 = operacion.substring(aux + 1, operacion.length());
+                break;
+
             }
         }
-        
+
         double result;
-        
-        switch(operador){
+
+        switch (operador) {
             case "-":
                 result = Double.parseDouble(termino) - Double.parseDouble(termino2);
                 return Double.toString(result);
@@ -765,7 +766,7 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
                 result = Double.parseDouble(termino) * Double.parseDouble(termino);
                 return Double.toString(result);
             case "%":
-                result = ((Double.parseDouble(termino) * Double.parseDouble(termino2))/100);
+                result = ((Double.parseDouble(termino) * Double.parseDouble(termino2)) / 100);
                 return Double.toString(result);
             case "sqroot":
                 result = Math.sqrt(Double.parseDouble(termino));
@@ -801,7 +802,8 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         x2Button.setEnabled(false);
         x3Button.setEnabled(false);
     }
-        private void enableAllOperators() {
+
+    private void enableAllOperators() {
         divButton.setEnabled(true);
         minusButton.setEnabled(true);
         moduleButton.setEnabled(true);
@@ -812,6 +814,33 @@ public class mainFrame extends javax.swing.JFrame implements CalculatorLogic {
         x3Button.setEnabled(true);
     }
 
+    private void disableAllNumbers() {
+        n0Button.setEnabled(false);
+        n1button.setEnabled(false);
+        n2Button.setEnabled(false);
+        n3Button.setEnabled(false);
+        n4Button.setEnabled(false);
+        n5Button.setEnabled(false);
+        n6Button.setEnabled(false);
+        n7Button.setEnabled(false);
+        n8Button.setEnabled(false);
+        n9Button.setEnabled(false);
+        puntoButton.setEnabled(false);
+    }
+
+    private void enableAllNumbers() {
+        n0Button.setEnabled(true);
+        n1button.setEnabled(true);
+        n2Button.setEnabled(true);
+        n3Button.setEnabled(true);
+        n4Button.setEnabled(true);
+        n5Button.setEnabled(true);
+        n6Button.setEnabled(true);
+        n7Button.setEnabled(true);
+        n8Button.setEnabled(true);
+        n9Button.setEnabled(true);
+        puntoButton.setEnabled(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cButton;
