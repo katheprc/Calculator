@@ -4,7 +4,7 @@
 - [x] ~~Functionality of equal button to show results on main view~~ <sup>Sep 11 2023</sub> 
 - [x] ~~Functionality of history view~~ <sup>Sep 11 2023</sub>
 - [x] ~~Color themes dropdown~~ <sup>Sep 11 2023</sub>
-- [ ] Compile into an executable
+- [x] ~~Compile into an executable~~ <sup>Sep 12 2023</sub>  |   [Executable JAR file](https://github.com/katheprc/Calculator/tree/main/Executable%20JAR%20file)
 
 -----------------------------------------------------------------
 
